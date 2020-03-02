@@ -1,5 +1,6 @@
-import BasicLayout from "../layouts/BasicLayout";
-import Admin from 'containers/Admin/Admin.js'
+import loadable from 'utils/loadable'//组件懒加载
+const Admin = loadable(() => import('containers/Admin/Admin.js'));
+const BasicLayout = loadable(() => import('layouts/BasicLayout'));
 //在这里配置路由的信息
 let routeConfig = [
 

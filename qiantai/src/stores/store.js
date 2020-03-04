@@ -1,6 +1,6 @@
 
 import { configure } from 'mobx';
-import globalStore from './common/global';
+
 import store from "./index";
 //引用store组件
 
@@ -9,7 +9,6 @@ configure({
 });
 
 const stores = {
-  globalStore,
   ...store
 };
 

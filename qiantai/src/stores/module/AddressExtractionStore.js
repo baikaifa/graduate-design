@@ -1,5 +1,5 @@
 import { observable, action, runInAction } from 'mobx';
-import pagination from "@/stores/common/Pagination";
+
 import * as InfoApi from "@/service/api/AddressExtractionApi";
 
 class AddressExtractionStore {

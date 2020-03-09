@@ -46,7 +46,11 @@ module.exports = {
       ["img"]: path.resolve(__dirname, "src/assets/img"),
       ["layouts"]: path.resolve(__dirname, "src/layouts"),
       ["containers"]: path.resolve(__dirname, "src/containers"),
-      ["api"]:path.resolve(__dirname, "src/service/api")
+      ["api"]: path.resolve(__dirname, "src/service/api"),
+      ["components"]: path.resolve(__dirname, "src/components"),
+      ["stores"]: path.resolve(__dirname, "src/stores"),
+      ["xhr"]: path.resolve(__dirname, "src/service/xhr"),
+      
     }),
     config => {
       //暴露webpack的配置 config ,evn

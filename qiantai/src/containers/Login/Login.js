@@ -8,6 +8,7 @@ import { withRouter } from "react-router";
 import 'moment/locale/zh-cn';
 import { Link } from "react-router-dom";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import loadable from 'utils/loadable'//组件懒加载
 import {
     getDivWidthAndHeight,
     getUploadImageWidthAndHeight,
@@ -24,7 +25,7 @@ import {
     formatDate,
 } from "utils/utils";
 import $ from "jquery";
-import NormalLoginForm from './components/NormalLoginForm/NormalLoginForm'
+
 moment.locale('zh-cn');
 const { SubMenu } = Menu;
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
@@ -35,16 +36,18 @@ const { Option1 } = Select;
 const { Panel } = Collapse;
 const { TabPane } = Tabs;
 const { SHOW_PARENT } = TreeSelect;
+const BackgroundVideo = loadable(() => import('components/BackgroundVideo/BackgroundVideo'));
+const NormalLoginForm = loadable(() => import('./components/NormalLoginForm/NormalLoginForm'));
 
 //inject与observer必须紧跟class，否则会出现当props改变的时候页面不重新渲染的问题
 @withRouter
 
 @observer
-export default class Admin extends Component {
+export default class Login extends Component {
     render() {
         return (
             <React.Fragment>
-                hello
+                <BackgroundVideo />
                 <NormalLoginForm />
             </React.Fragment>
         );

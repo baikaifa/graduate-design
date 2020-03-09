@@ -14,7 +14,6 @@ io.on('connection',function (socket){
     })
 })
 
-
 //引入users.js
 const users = require('./routers/api/users');
 const profiles = require('./routers/api/profiles');
@@ -29,7 +28,7 @@ const fourList = require('./routers/api/fourList');
 const loadMore = require('./routers/api/loadMore');
 //使用body-parser中间件
 app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false,useUnifiedTopology: true }));
 app.use(bodyParser.json())
 //passport初始化   初始化之后才能使用
 app.use(passport.initialize());

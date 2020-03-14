@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { MyContext } from 'stores/index.js';
-import { Observer } from 'mobx-react-lite';
+
+import { observer } from 'mobx-react-lite';
 import {
     Form,
     Input,
@@ -14,13 +14,12 @@ import {
     AutoComplete,message
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { observer, inject } from 'mobx-react'
 import { withRouter } from 'react-router';
 import { useHistory } from "react-router-dom";
 import loadable from 'utils/loadable'//组件懒加载
 import s from './Register.module.less'
 import Login from '../Login/Login';
-import { register } from 'api/login'
+import { register } from 'api/loginApi'
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 const BackgroundVideo = loadable(() => import('components/BackgroundVideo/BackgroundVideo'));

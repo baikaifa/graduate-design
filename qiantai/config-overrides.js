@@ -48,9 +48,9 @@ module.exports = {
       ["containers"]: path.resolve(__dirname, "src/containers"),
       ["api"]: path.resolve(__dirname, "src/service/api"),
       ["components"]: path.resolve(__dirname, "src/components"),
-      ["stores"]: path.resolve(__dirname, "src/stores"),
+      ["store"]: path.resolve(__dirname, "src/store"),
       ["xhr"]: path.resolve(__dirname, "src/service/xhr"),
-      
+      ["router"]: path.resolve(__dirname, "src/router"),
     }),
     config => {
       //暴露webpack的配置 config ,evn

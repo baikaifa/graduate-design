@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import './index.less';
-import 'element-theme-default';
+
 import App from './App';
 import { message } from 'antd'
 
@@ -14,6 +13,4 @@ message.config({
     maxCount: 3
   });
 ReactDOM.render(<App />, document.getElementById('root'));
-
-
 registerServiceWorker();

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.SectionMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Section" >
+    <id column="session_id" property="sessionId" jdbcType="INTEGER" />
+    <result column="sessin_name" property="sessinName" jdbcType="VARCHAR" />
+    <result column="article_count" property="articleCount" jdbcType="INTEGER" />
+    <result column="session_master" property="sessionMaster" jdbcType="INTEGER" />
+    <result column="session_parentId" property="sessionParentid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    session_id, sessin_name, article_count, session_master, session_parentId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_section
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_section
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.Section" >
+    insert into tb_section (session_id, sessin_name, article_count, 
+      session_master, session_parentId)
+    values (#{sessionId,jdbcType=INTEGER}, #{sessinName,jdbcType=VARCHAR}, #{articleCount,jdbcType=INTEGER}, 
+      #{sessionMaster,jdbcType=INTEGER}, #{sessionParentid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Section" >
+    insert into tb_section
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        session_id,
+      </if>
+      <if test="sessinName != null" >
+        sessin_name,
+      </if>
+      <if test="articleCount != null" >
+        article_count,
+      </if>
+      <if test="sessionMaster != null" >
+        session_master,
+      </if>
+      <if test="sessionParentid != null" >
+        session_parentId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=INTEGER},
+      </if>
+      <if test="sessinName != null" >
+        #{sessinName,jdbcType=VARCHAR},
+      </if>
+      <if test="articleCount != null" >
+        #{articleCount,jdbcType=INTEGER},
+      </if>
+      <if test="sessionMaster != null" >
+        #{sessionMaster,jdbcType=INTEGER},
+      </if>
+      <if test="sessionParentid != null" >
+        #{sessionParentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Section" >
+    update tb_section
+    <set >
+      <if test="sessinName != null" >
+        sessin_name = #{sessinName,jdbcType=VARCHAR},
+      </if>
+      <if test="articleCount != null" >
+        article_count = #{articleCount,jdbcType=INTEGER},
+      </if>
+      <if test="sessionMaster != null" >
+        session_master = #{sessionMaster,jdbcType=INTEGER},
+      </if>
+      <if test="sessionParentid != null" >
+        session_parentId = #{sessionParentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Section" >
+    update tb_section
+    set sessin_name = #{sessinName,jdbcType=VARCHAR},
+      article_count = #{articleCount,jdbcType=INTEGER},
+      session_master = #{sessionMaster,jdbcType=INTEGER},
+      session_parentId = #{sessionParentid,jdbcType=INTEGER}
+    where session_id = #{sessionId,jdbcType=INTEGER}
+  </update>
+</mapper>

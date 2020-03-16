@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.model.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+    <result column="user_face" property="userFace" jdbcType="VARCHAR" />
+    <result column="user_regTime" property="userRegtime" jdbcType="DATE" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="user_state" property="userState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_pwd, user_face, user_regTime, user_type, user_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 自定义方法-->
+   <select id="getUserList" resultMap="BaseResultMap" parameterType="com.model.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user
+   
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.model.User" >
+    insert into tb_user (user_id, user_name, user_pwd, 
+      user_face, user_regTime, user_type, 
+      user_state)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{userFace,jdbcType=VARCHAR}, #{userRegtime,jdbcType=DATE}, #{userType,jdbcType=VARCHAR}, 
+      #{userState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.User" >
+    insert into tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPwd != null" >
+        user_pwd,
+      </if>
+      <if test="userFace != null" >
+        user_face,
+      </if>
+      <if test="userRegtime != null" >
+        user_regTime,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userState != null" >
+        user_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null" >
+        #{userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegtime != null" >
+        #{userRegtime,jdbcType=DATE},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null" >
+        #{userState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getUser"  resultMap="BaseResultMap" parameterType="map" >
+    select 
+     <include refid="Base_Column_List" />
+     from tb_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPwd != null" >
+        user_pwd,
+      </if>
+      <if test="userFace != null" >
+        user_face,
+      </if>
+      <if test="userRegtime != null" >
+        user_regTime,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="userState != null" >
+        user_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null" >
+        #{userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegtime != null" >
+        #{userRegtime,jdbcType=DATE},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null" >
+        #{userState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </select>
+  
+  <update id="updateByPrimaryKey" parameterType="com.model.User" >
+    update tb_user
+    set 
+    <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userFace != null" >
+        #{userFace,jdbcType=VARCHAR},
+      </if>
+      <if test="userRegtime != null" >
+        #{userRegtime,jdbcType=DATE},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userState != null" >
+        #{userState,jdbcType=VARCHAR},
+      </if>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

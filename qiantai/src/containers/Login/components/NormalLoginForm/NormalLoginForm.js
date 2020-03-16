@@ -7,10 +7,12 @@ import { login } from 'api/loginApi'
 import s from './NormalLoginForm.module.less'
 import jwt_decode from 'jwt-decode'
 import './NormalLoginForm.css'
+import { useObserver } from 'mobx-react-lite';
+import { useStores } from 'store/index.js';
 
-export default observer(withRouter(function NormalLoginForm(props) {
-    const [num, setNum] = useState(10);
-    const homeStore = useContext(MyContext); // 当组件上层最近的 <MyContext.Provider> 更新时，该 Hook 会触发重渲染，并使用最新传递给 MyContext provider 的 context value 值。
+export default withRouter(function NormalLoginForm(props) {
+    let store = useStores(); // 获取store
+    let { homeStore } = store
     const onFinish = async values => {
         console.log('Received values of form: ', values);
         const res = await login({
@@ -29,10 +31,8 @@ export default observer(withRouter(function NormalLoginForm(props) {
             message.info(res.data)
         }
     };
-    return (
+    return useObserver(() =>
         <React.Fragment>
-
-
             <div className={`${s.formWrap}`}>
                 <Form
                     name="normal_login"
@@ -84,5 +84,5 @@ export default observer(withRouter(function NormalLoginForm(props) {
 
         </React.Fragment>
     )
-}))
+})
 

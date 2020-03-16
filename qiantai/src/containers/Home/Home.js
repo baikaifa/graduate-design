@@ -4,10 +4,13 @@ import s from './Home.module.less'
 import loadable from 'utils/loadable'//组件懒加载
 import { withRouter } from 'react-router';
 import { getUser } from 'api/HomeApi'
-import { observer } from 'mobx-react-lite';
-const HeaderContent = loadable(() => import('./components/HeaderContent/HeaderContent'));
-export default observer(withRouter(function Home(props) {
+import { useObserver } from 'mobx-react-lite';
+import { useStores } from 'store/index.js';
 
+const HeaderContent = loadable(() => import('./components/HeaderContent/HeaderContent'));
+export default withRouter(function Home(props) {
+    let store = useStores(); // 获取store
+    const { homeStore, themeStore } = store;
     async function authoritation_token() {
         if (localStorage.getItem('token')) {
             console.log(localStorage.getItem('token'))
@@ -15,18 +18,18 @@ export default observer(withRouter(function Home(props) {
             console.log(res)
             if (res.status == 200) {
                 message.info('欢迎你' + res.data.email, 1)
+                homeStore.changeIsLogin(true)
             }
         }
     }
     useEffect(() => {
-        // authoritation_token()
-        props.history.push('/Test')
+        authoritation_token()
     })
-    return () => {
+    return useObserver(() => (
         <React.Fragment>
             <HeaderContent className={`${s.header}`}></HeaderContent>
             <div className={`${s.img}`}></div>
-
         </React.Fragment>
-    }
-}))
+    ))
+
+})

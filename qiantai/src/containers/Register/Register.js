@@ -11,7 +11,7 @@ import {
     Col,
     Checkbox,
     Button,
-    AutoComplete,message
+    AutoComplete, message
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router';
@@ -91,13 +91,6 @@ const tailFormItemLayout = {
 const RegistrationForm = (props) => {
     console.log(props)
 
-    const [num, setNum] = useState(10);
-    const store = useContext(MyContext); // 当组件上层最近的 <MyContext.Provider> 更新时，该 Hook 会触发重渲染，并使用最新传递给 MyContext provider 的 context value 值。
-
-    useEffect(() => {
-        console.log('num change', MyContext);
-    }, [num]);
-
     const [form] = Form.useForm();
 
     const onFinish = async values => {
@@ -107,10 +100,9 @@ const RegistrationForm = (props) => {
             email: values.email,
             password: values.password
         })
-
-        message.info(res)
-        if(res=='注册成功'){
-                props.history.push('/Login')
+        message.info(res.data)
+        if (res.data == '注册成功') {
+            props.history.push('/Login')
         }
     };
 
@@ -310,9 +302,9 @@ const RegistrationForm = (props) => {
                     <Button type="primary" htmlType="submit">
                         注册
                     </Button>
-                    <Button type="" ghost style={{marginLeft:"10px"}}
-                    onClick={ () => {props.history.push('/Login')} }
-                    htmlType="submit">
+                    <Button type="" ghost style={{ marginLeft: "10px" }}
+                        onClick={() => { props.history.push('/Login') }}
+                        htmlType="submit">
                         切换登录页
                     </Button>
                 </Form.Item>

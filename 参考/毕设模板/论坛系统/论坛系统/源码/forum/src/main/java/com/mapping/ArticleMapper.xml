@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.model.Article" >
+    <id column="art_id" property="artId" jdbcType="INTEGER" />
+    <result column="section_id" property="sectionId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="art_topic" property="artTopic" jdbcType="VARCHAR" />
+    <result column="art_replyCount" property="artReplycount" jdbcType="INTEGER" />
+    <result column="art_clickCount" property="artClickcount" jdbcType="INTEGER" />
+    <result column="art_pubTime" property="artPubtime" jdbcType="TIMESTAMP" />
+    <result column="art_modTime" property="artModtime" jdbcType="TIMESTAMP" />
+    <result column="art_state" property="artState" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.model.Article" extends="BaseResultMap" >
+    <result column="art_content" property="artContent" jdbcType="LONGVARCHAR" />
+     <result column="art_comment" property="artComment" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    art_id, section_id, user_id, art_topic, art_replyCount, art_clickCount, art_pubTime, 
+    art_modTime, art_state
+  </sql>
+  <sql id="Blob_Column_List" >
+    art_content,art_comment
+  </sql>
+  <select id="selectByUserName" resultMap="ResultMapWithBLOBs" parameterType="com.model.ArticleVo" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article
+    where user_id in
+     (select user_id from tb_user where user_name=#{userName,jdbcType=VARCHAR}
+     )
+    
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article
+    where art_id = #{artId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getBySectionId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article
+    where section_id = #{sectionId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getArtList" resultMap="BaseResultMap" parameterType="com.model.Article" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article
+    
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_article
+    where art_id = #{artId,jdbcType=INTEGER}
+  </delete>
+  <!--  <insert id="insert" parameterType="com.model.Article" >
+    insert into tb_article (art_id, section_id, user_id, 
+      art_topic, art_replyCount, art_clickCount, 
+      art_pubTime, art_modTime, art_state, 
+      art_content)
+    values (#{artId,jdbcType=INTEGER}, #{sectionId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{artTopic,jdbcType=VARCHAR}, #{artReplycount,jdbcType=INTEGER}, #{artClickcount,jdbcType=INTEGER}, 
+      #{artPubtime,jdbcType=TIMESTAMP}, #{artModtime,jdbcType=TIMESTAMP}, #{artState,jdbcType=VARCHAR}, 
+      #{artContent,jdbcType=LONGVARCHAR})
+  </insert>
+  -->
+   <update id="pubComment" parameterType="com.model.Article" >
+    update tb_article
+    set art_comment = #{artComment,jdbcType=VARCHAR}
+    where art_id = #{artId,jdbcType=INTEGER}
+  </update>
+   <insert id="insert" parameterType="com.model.Article" >
+    insert into tb_article (
+      art_topic,art_content)
+    values ( 
+      #{artTopic,jdbcType=VARCHAR},#{artContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="addConment" parameterType="com.model.Article" >
+    insert into tb_article (
+      art_comment)
+    values ( 
+      #{art_comment,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Article" >
+    insert into tb_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artId != null" >
+        art_id,
+      </if>
+      <if test="sectionId != null" >
+        section_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="artTopic != null" >
+        art_topic,
+      </if>
+      <if test="artReplycount != null" >
+        art_replyCount,
+      </if>
+      <if test="artClickcount != null" >
+        art_clickCount,
+      </if>
+      <if test="artPubtime != null" >
+        art_pubTime,
+      </if>
+      <if test="artModtime != null" >
+        art_modTime,
+      </if>
+      <if test="artState != null" >
+        art_state,
+      </if>
+      <if test="artContent != null" >
+        art_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artId != null" >
+        #{artId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="artTopic != null" >
+        #{artTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="artReplycount != null" >
+        #{artReplycount,jdbcType=INTEGER},
+      </if>
+      <if test="artClickcount != null" >
+        #{artClickcount,jdbcType=INTEGER},
+      </if>
+      <if test="artPubtime != null" >
+        #{artPubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="artModtime != null" >
+        #{artModtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="artState != null" >
+        #{artState,jdbcType=VARCHAR},
+      </if>
+      <if test="artContent != null" >
+        #{artContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Article" >
+    update tb_article
+    <set >
+      <if test="sectionId != null" >
+        section_id = #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="artTopic != null" >
+        art_topic = #{artTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="artReplycount != null" >
+        art_replyCount = #{artReplycount,jdbcType=INTEGER},
+      </if>
+      <if test="artClickcount != null" >
+        art_clickCount = #{artClickcount,jdbcType=INTEGER},
+      </if>
+      <if test="artPubtime != null" >
+        art_pubTime = #{artPubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="artModtime != null" >
+        art_modTime = #{artModtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="artState != null" >
+        art_state = #{artState,jdbcType=VARCHAR},
+      </if>
+      <if test="artContent != null" >
+        art_content = #{artContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where art_id = #{artId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.model.Article" >
+    update tb_article
+    set section_id = #{sectionId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      art_topic = #{artTopic,jdbcType=VARCHAR},
+      art_content = #{artContent,jdbcType=LONGVARCHAR},
+     
+    where art_id = #{artId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Article" >
+    update tb_article
+    set section_id = #{sectionId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      art_topic = #{artTopic,jdbcType=VARCHAR},
+      art_replyCount = #{artReplycount,jdbcType=INTEGER},
+      art_clickCount = #{artClickcount,jdbcType=INTEGER},
+      art_pubTime = #{artPubtime,jdbcType=TIMESTAMP},
+      art_modTime = #{artModtime,jdbcType=TIMESTAMP},
+      art_state = #{artState,jdbcType=VARCHAR}
+    where art_id = #{artId,jdbcType=INTEGER}
+  </update>
+</mapper>

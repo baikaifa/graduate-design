@@ -22,16 +22,27 @@
     }
 
 }
+
 .TieZiWrap {
     width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
 
     .TieZiLeft {
         width: 30%;
+
+        .Avatar {
+            color: red;
+        }
     }
 
     .TieZiRight {
         width: 70%;
+
+        .TieZiRightContent {
+            width: 640px;
+        }
     }
 }
 
@@ -157,4 +168,12 @@
         }
 
     }
+}
+
+footer{
+    border-top: 5px solid blue;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    background-color: #fff;
 }

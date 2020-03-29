@@ -12,6 +12,7 @@ moment.locale('zh-cn');
 const HeaderContent = loadable(() => import('components/HeaderContent'));
 const Carousel = loadable(() => import('components/Carousel'));
 const AiKeVideo = loadable(() => import('components/AiKeVideo'));
+const Footer = loadable(() => import('components/Footer'));
 export default withRouter(function Home(props) {
     let store = useStores(); // 获取store
     const { homeStore, themeStore } = store;
@@ -22,6 +23,7 @@ export default withRouter(function Home(props) {
             console.log(res)
             if (res.status == 200) {
                 message.info('欢迎你' + res.data.email, 1)
+                homeStore.User = res.data.email
                 homeStore.changeUserEmail(res.data.email)
                 homeStore.changeIsLogin(true)
                 let format_date = res.data.date.split('T')[0] + " " + res.data.date.split('T')[1].split('.')[0]
@@ -62,7 +64,9 @@ export default withRouter(function Home(props) {
 
                 </div>
             </div>
-        </React.Fragment>
+
+            <Footer></Footer>
+        </React.Fragment >
     ))
 
 })

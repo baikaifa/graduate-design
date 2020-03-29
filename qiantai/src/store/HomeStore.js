@@ -3,7 +3,7 @@ import { observable, action, runInAction } from 'mobx';
 import { message } from 'antd'
 import { toJS } from 'mobx'
 
-export class homeStore {
+class homeStore {
     @observable IsLogin = undefined
     @observable Token = undefined
     @observable UserEmail = undefined
@@ -30,3 +30,5 @@ export class homeStore {
 
 }
 
+
+export default new homeStore();

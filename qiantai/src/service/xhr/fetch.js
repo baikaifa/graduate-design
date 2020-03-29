@@ -17,10 +17,17 @@ axios.interceptors.response.use(response => {
     return response;
 }, error => {
     //错误提醒
-    message.error(error.response.data);
+    console.log(error)
+    // message.error(error.response.data);
     //获取错误状态码
     const { status } = error.response;
-
+    if (status == 401) {
+        Message.error('token失效，请重新登录！');
+        //清除token
+        localStorage.removeItem('token');
+        //跳转到登录页面
+        routers.push('/Login');
+    }
     return Promise.reject(error);
 })
 export default axios;

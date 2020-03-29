@@ -52,7 +52,7 @@ module.exports = {
       ["xhr"]: path.resolve(__dirname, "src/service/xhr"),
       ["router"]: path.resolve(__dirname, "src/router"),
       ["less"]: path.resolve(__dirname, "src/assets/less"),
-      ["img"]: path.resolve(__dirname, "src/assets/img"),
+      ["video"]: path.resolve(__dirname, "src/assets/video"),
     }),
     config => {
       //暴露webpack的配置 config ,evn

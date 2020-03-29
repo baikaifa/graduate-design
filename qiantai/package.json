@@ -9,6 +9,7 @@
     "antd": "^4.0.0",
     "axios": "^0.19.1",
     "babel-plugin-import": "^1.13.0",
+    "copy-to-clipboard": "^3.3.1",
     "css-loader": "^1.0.0",
     "customize-cra": "^0.9.1",
     "element-theme-default": "^1.4.13",

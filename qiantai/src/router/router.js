@@ -4,8 +4,14 @@ const Registers = loadable(() => import('containers/Register/Register'));
 const Home = loadable(() => import('containers/Home'));
 const Test = loadable(() => import('../store/Test'));
 const PersonalInfo = loadable(() => import('containers/PersonalInfo'));
+const TieZi = loadable(() => import('components/TieZi'));
 //在这里配置路由的信息
 let routeConfig = [
+  {
+    path: "/TieZi",
+    exact: true,
+    render: TieZi
+  },
   {
     path: "/PersonalInfo",
     exact: true,

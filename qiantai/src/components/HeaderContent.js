@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router';
 import { useObserver } from 'mobx-react-lite';
 import { useStores } from 'store/index.js';
+import { Button } from 'antd'
 export default withRouter(function HeaderContent(props) {
     let store = useStores(); // 获取store
     const { homeStore, themeStore } = store;
+
     return useObserver(() => (
         <React.Fragment>
             <div className="header">
@@ -23,7 +25,12 @@ export default withRouter(function HeaderContent(props) {
                         onClick={() => { props.history.push('/PersonalInfo') }}
                     >{homeStore.UserEmail}</div>
                 }
-
+                {
+                    homeStore.IsLogin && <Button ghost onClick={() => {
+                        localStorage.removeItem('token')
+                        
+                    }} style={{ marginLeft: "16px" }} >退出登录</Button>
+                }
             </div>
         </React.Fragment>
     ))

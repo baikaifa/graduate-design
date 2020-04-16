@@ -2,19 +2,42 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const cookieParser=require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
-const server =require('http').Server(app);
-const io=require('socket.io')(server);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
-io.on('connection',function (socket){
-    socket.on('sendmsg',function (data){
-        console.log('我发送了数据',data);
-        io.emit('recvmsg',data)
+const pathLib = require('path');
+
+
+app.get('/', (req, res) => {
+    res.json('ok')
+})
+//文件管理-文件上传
+app.post('/api/upload_file', function (req, res) {
+    //新文件名
+    //'./www/upload/dfb33662df86c75cf4ea8197f9d419f9' + '.png'
+    var newName = req.files[0].path + pathLib.parse(req.files[0].originalname).ext;
+
+    fs.rename(req.files[0].path, newName, function (err) {
+        if (err)
+            res.send('上传失败');
+        else
+            res.send('成功');
+    });
+
+    //1.获取原始文件扩展名
+    //2.重命名临时文件
+});
+io.on('connection', function (socket) {
+    socket.on('sendmsg', function (data) {
+        console.log('我发送了数据', data);
+        io.emit('recvmsg', data)
     })
 })
 
 //引入users.js
+
 const users = require('./routers/api/users');
 const profiles = require('./routers/api/profiles');
 const headerList = require('./routers/api/headerList');
@@ -26,9 +49,10 @@ const articleList = require('./routers/api/articleList');
 const recommendList = require('./routers/api/recommendList');
 const fourList = require('./routers/api/fourList');
 const loadMore = require('./routers/api/loadMore');
+const fileRouter=require('./routers/api/fileRouter')
 //使用body-parser中间件
 app.use(cookieParser())
-app.use(bodyParser.urlencoded({ extended: false,useUnifiedTopology: true }));
+app.use(bodyParser.urlencoded({ extended: false, useUnifiedTopology: true }));
 app.use(bodyParser.json())
 //passport初始化   初始化之后才能使用
 app.use(passport.initialize());
@@ -48,6 +72,7 @@ app.use('/api/articleList', articleList)
 app.use('/api/fourList', fourList)
 app.use('/api/recommendList', recommendList)
 app.use('/api/loadMore', loadMore)
+app.use('/api/fileRouter',fileRouter)
 const port = process.env.PORT || 5000;
 //连接数据库
 // var MongoClient = require('mongodb').MongoClient
@@ -57,7 +82,7 @@ var url = 'mongodb://localhost:27017/houtai' //local表示数据库的名称
 mongoose.connect(url, { useNewUrlParser: true })
     .then(() => { console.log('连接成功') })
     .catch(err => console.log(err))
-    server.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
 

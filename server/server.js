@@ -49,7 +49,8 @@ const articleList = require('./routers/api/articleList');
 const recommendList = require('./routers/api/recommendList');
 const fourList = require('./routers/api/fourList');
 const loadMore = require('./routers/api/loadMore');
-const fileRouter=require('./routers/api/fileRouter')
+const fileRouter = require('./routers/api/fileRouter')
+const commentList = require('./routers/api/commentList')
 //使用body-parser中间件
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false, useUnifiedTopology: true }));
@@ -61,6 +62,7 @@ require('./config/passport')(passport);//在这里引入后直接在config下的
 //     res.send("Hello World!");
 // })
 //使用routes
+app.use("/api/commentList",commentList)
 app.use("/api/users", users);
 app.use('/api/profiles', profiles);
 app.use('/api/headerList', headerList);
@@ -72,7 +74,7 @@ app.use('/api/articleList', articleList)
 app.use('/api/fourList', fourList)
 app.use('/api/recommendList', recommendList)
 app.use('/api/loadMore', loadMore)
-app.use('/api/fileRouter',fileRouter)
+app.use('/api/fileRouter', fileRouter)
 const port = process.env.PORT || 5000;
 //连接数据库
 // var MongoClient = require('mongodb').MongoClient

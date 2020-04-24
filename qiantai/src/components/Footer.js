@@ -37,12 +37,14 @@ export default class Footers extends Component {
     render() {
         return (
             <React.Fragment>
+                <div className="FooterWrap">
                 <footer className="footer">
                     <img src={require('img/4.png')} alt="" />
                     <div className="BanQuan" style={{ float: "right", marginTop: "16px" }}>
                         Copyright © 1998 - 2016 Tencent. All Rights Reserved
                 </div>
                 </footer>
+                </div>
             </React.Fragment>
         );
     }

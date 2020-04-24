@@ -1,9 +1,11 @@
+@s: 16px;
+
 .AikeVideo {
     min-width: 100%;
-    width: 100%;
-    z-index: -9999;
-    position: absolute;
-    filter: opacity(0.5);
+    width    : 100%;
+    z-index  : -9999;
+    position : absolute;
+    filter   : opacity(0.5);
     // height: 400px;
     // filter: grayscale(100%);
 }
@@ -12,7 +14,7 @@
     text-align: center;
 
     .copyLianJie {
-        color: #999;
+        color : #999;
         cursor: pointer;
 
     }
@@ -24,10 +26,11 @@
 }
 
 .TieZiWrap {
-    width: 80%;
-    margin-left: auto;
+    width       : 80%;
+    margin-left : auto;
     margin-right: auto;
-    display: flex;
+    display     : flex;
+    position    : relative;
 
     .TieZiLeft {
         width: 30%;
@@ -44,14 +47,32 @@
             width: 640px;
         }
     }
+
 }
 
+.comment {
+    margin-top: @s;
+    width       : 80%;
+    margin-left : auto;
+    margin-right: auto;
+    display     : flex;
+    .commentLeft {
+        width: 30%;
+    }
+
+    .commentRight {
+        width: 70%;
+        .commentInput{
+            width: 500px;
+        }
+    }
+}
 
 
 .ant-carousel .slick-slide {
     text-align: center;
-    filter: opacity(0.7);
-    overflow: hidden;
+    filter    : opacity(0.7);
+    overflow  : hidden;
 
     img {
         cursor: pointer;
@@ -63,15 +84,15 @@
 }
 
 .userEmail {
-    display: inline-block;
-    width: auto;
-    height: 40px;
-    line-height: 40px;
-    color: white;
-    border: 1px solid white;
-    cursor: pointer;
+    display       : inline-block;
+    width         : auto;
+    height        : 40px;
+    line-height   : 40px;
+    color         : white;
+    border        : 1px solid white;
+    cursor        : pointer;
     vertical-align: middle;
-    text-align: center;
+    text-align    : center;
 }
 
 .logo {
@@ -79,12 +100,12 @@
 }
 
 .header {
-    width: 100%;
-    height: 90px;
+    width     : 100%;
+    height    : 90px;
     background: rgba(0, 0, 0, .92);
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    position  : sticky;
+    top       : 0;
+    z-index   : 2;
 
     .logo_img {
         cursor: pointer;
@@ -97,9 +118,9 @@
 }
 
 .all {
-    width: 100%;
-    height: 500px;
-    background: gray;
+    width      : 100%;
+    height     : 500px;
+    background : gray;
     padding-top: 20px;
 
     .userEmail {
@@ -108,27 +129,27 @@
 
     .tong_ji__xin_xi {
         margin-left: 20px;
-        display: inline-block;
+        display    : inline-block;
     }
 
     .fen_jie_xian {
-        width: 95%;
-        margin-left: auto;
-        margin-right: auto;
+        width        : 95%;
+        margin-left  : auto;
+        margin-right : auto;
         border-bottom: 1px dashed #fff;
-        padding: 10px;
+        padding      : 10px;
     }
 }
 
 .left {
-    width: 50%;
-    height: calc(100% - 90px);
+    width   : 50%;
+    height  : calc(100% - 90px);
     position: relative;
 
     .car {
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0%);
+        position  : absolute;
+        left      : 50%;
+        transform : translate(-50%, 0%);
         margin-top: 16px;
     }
 
@@ -136,27 +157,27 @@
 }
 
 .right {
-    width: 50%;
-    height: calc(100% - 90px);
-    float: left;
+    width   : 50%;
+    height  : calc(100% - 90px);
+    float   : left;
     position: relative;
 
     .ZiXun {
-        margin-top: 16px;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, 0%);
-        width: 640px;
-        height: 400px;
-        display: flex;
-        flex-direction: column;
+        margin-top     : 16px;
+        position       : absolute;
+        left           : 50%;
+        transform      : translate(-50%, 0%);
+        width          : 640px;
+        height         : 400px;
+        display        : flex;
+        flex-direction : column;
         justify-content: space-evenly;
 
         .head {
-            width: 100%;
+            width     : 100%;
             text-align: center;
-            color: red;
-            font-size: 26px;
+            color     : red;
+            font-size : 26px;
         }
 
         li {
@@ -170,10 +191,15 @@
     }
 }
 
-footer{
-    border-top: 5px solid blue;
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    background-color: #fff;
+.FooterWrap {
+    height: 95px;
+
+    footer {
+
+        border-top      : 5px solid blue;
+        width           : 100%;
+        position        : fixed;
+        bottom          : 0px;
+        background-color: #fff;
+    }
 }

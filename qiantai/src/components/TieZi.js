@@ -25,6 +25,7 @@ const { Option1 } = Select;
 const { Panel } = Collapse;
 const { TabPane } = Tabs;
 const { SHOW_PARENT } = TreeSelect;
+const { TextArea } = Input;
 //在下面添加新的const
 const HeaderContent = loadable(() => import('./HeaderContent'));
 const AiKeVideo = loadable(() => import('./AiKeVideo'));
@@ -34,9 +35,23 @@ const Footers = loadable(() => import('./Footer'));
 @inject('homeStore')
 @observer
 export default class componentName extends Component {
+    state = {
+        CanRender: false
+    }
 
+    componentDidMount = async () => {
+
+        let { homeStore } = this.props
+        await homeStore.GetTieZiComment()
+        console.log(toJS(homeStore.CommentList))
+       
+        this.setState((prevState) => ({
+            CanRender: true
+        }))
+        console.log(toJS(homeStore.CommentList))
+    }
     render() {
-        console.log(this.props.homeStore)
+        let { homeStore } = this.props
         return (
             <React.Fragment>
                 <HeaderContent></HeaderContent>
@@ -69,18 +84,57 @@ export default class componentName extends Component {
                                 感谢玩家支持啦～在此谢谢长期观看本专栏的玩家！
                                 独乐乐不如众乐乐，广大玩家发现有好玩儿的图片快联系我们啦！
                                 [可论坛私信或者回复本帖，我们将密切关注本帖动态！谢谢大家！]
-                    </p>
+                            </p>
                             <br />
                             <div>
                                 当我玩辅助故意抢人头的时候
-                    </div>
+                                </div>
                             <img src={require('img/1.jpg')} falt="" />
                             <p>德莱文什么时候带眼镜了？</p>
                             <img src={require('img/2.jpg')} />
+
+
+                            {this.state.CanRender &&
+                                homeStore.CommentList.map((item, index) => {
+                                    return (
+                                        <React.Fragment>
+                                            <div>
+                                                <div>匿名用户：{item}</div>    
+                                            </div>
+                                        </React.Fragment>
+                                    );
+
+                                })
+                            }
+
                         </div>
                     </div>
                 </div>
-                <Footers></Footers>
+                <div className="comment">
+
+
+                    <div className="commentLeft">
+                        {homeStore.UserEmail}
+                    </div>
+                    <div className="commentRight">
+                        <TextArea
+                            value={homeStore.TextAreaValue}
+                            onChange={(e) => {
+                                let value = e.target.value
+                                console.log(value)
+                                homeStore.TextAreaValue = value
+                            }}
+                            className="commentInput" placeholder='请输入评论内容' />
+                    </div>
+                    <Button type="primary"
+                        onClick={() => {
+                            homeStore.AddComment()
+                        }}
+                    >发表回复</Button>
+                </div>
+                <Footers>
+
+                </Footers>
             </React.Fragment>
         );
     }

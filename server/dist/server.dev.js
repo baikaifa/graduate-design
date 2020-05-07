@@ -16,8 +16,11 @@ var server = require('http').Server(app);
 
 var io = require('socket.io')(server);
 
+var path = require('path');
+
 var pathLib = require('path');
 
+app.use(express["static"](path.join(__dirname, './static')));
 app.get('/', function (req, res) {
   res.json('ok');
 }); //文件管理-文件上传

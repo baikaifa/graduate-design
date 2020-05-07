@@ -1,0 +1,14 @@
+"use strict";
+
+var proxy = require('http-proxy-middleware');
+
+module.exports = function (app) {
+  app.use(proxy('/api', {
+    target: "http://127.0.0.1:5000",
+    changeOrigin: true,
+    secure: false // pathRewrite: {
+    //   "^/api": ""
+    // }
+
+  }));
+};

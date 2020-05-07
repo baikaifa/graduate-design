@@ -6,9 +6,10 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-
+const path = require('path')
 const pathLib = require('path');
 
+app.use(express.static(path.join(__dirname, './static')))
 
 app.get('/', (req, res) => {
     res.json('ok')

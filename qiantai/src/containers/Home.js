@@ -56,7 +56,7 @@ export default withRouter(function Home(props) {
                 <div className="ZiXun">
                     <div className="head">热门资讯</div>
 
-                    <li><span>【1.7话题】LOL新赛季到来隐藏海报曝光</span> <span>2020-01-06</span></li>
+                    <li onClick={ () => {props.history.push('/New')} }><span>【1.7话题】LOL新赛季到来隐藏海报曝光</span> <span>2020-01-06</span></li>
                     <li><span>【大话新闻】177期：明凯想做王者教练，May</span>  <span>2019-12-31</span> </li>
                     <li> <span>【皮埃斯公馆】AD之间的较量，求求队友别选</span> <span>2020-01-05</span></li>
                     <li> <span>【每周一辩】你是信号信号党还是语音党呢？</span> <span>2020-01-05</span></li>

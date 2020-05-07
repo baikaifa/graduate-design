@@ -5,8 +5,14 @@ const Home = loadable(() => import('containers/Home'));
 const Test = loadable(() => import('../store/Test'));
 const PersonalInfo = loadable(() => import('containers/PersonalInfo'));
 const TieZi = loadable(() => import('components/TieZi'));
+const New = loadable(() => import('components/New'));
 //在这里配置路由的信息
 let routeConfig = [
+  {
+    path: "/New",
+    exact: true,
+    render: New
+  },
   {
     path: "/TieZi",
     exact: true,

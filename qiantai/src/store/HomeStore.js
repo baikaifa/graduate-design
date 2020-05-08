@@ -27,7 +27,7 @@ class homeStore {
 
     @action AddComment = async () => {
         console.log(this.TextAreaValue)
-        const res = await axios.post('/api/commentList/add', { textValue: this.TextAreaValue })
+        const res = await axios.post('/api/commentList/add', { textValue: { UserEmail: this.UserEmail, value: this.TextAreaValue } })
         await this.GetTieZiComment()
         this.TextAreaValue = undefined
     }

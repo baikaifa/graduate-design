@@ -44,7 +44,7 @@ export default class componentName extends Component {
         let { homeStore } = this.props
         await homeStore.GetTieZiComment()
         console.log(toJS(homeStore.CommentList))
-       
+
         this.setState((prevState) => ({
             CanRender: true
         }))
@@ -99,7 +99,7 @@ export default class componentName extends Component {
                                     return (
                                         <React.Fragment>
                                             <div>
-                                                <div>匿名用户：{item}</div>    
+                                                <div>{item.UserEmail}:{item.value}</div>
                                             </div>
                                         </React.Fragment>
                                     );

@@ -22,6 +22,8 @@ export default withRouter(function NormalLoginForm(props) {
         console.log(res)
         if (res.data.success == true) {
             message.info('登录成功')
+            homeStore.socket.emit('login', String(values.email), () => {
+            })
             const decoded = jwt_decode(res.data.token)
             console.log(decoded)
             localStorage.setItem('token', res.data.token)

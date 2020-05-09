@@ -12,7 +12,21 @@ class homeStore {
     @observable LoginTime = undefined
     @observable TextAreaValue = undefined
     @observable CommentList = []
+    @observable OnLineMember = []
+    @observable socket = undefined
+    @observable InputValue = undefined
+    @observable said = []
+    @action CreateSocket = async (condition) => {
 
+        this.socket = io('http://localhost:5000', { 'timeout': 5000, 'connect timeout': 5000 });
+        this.socket.on("loadUser", OnLineMember => {
+            console.log(OnLineMember)
+            this.OnLineMember = OnLineMember
+        })
+        this.socket.on("output", data => {
+            this.said.push(data)
+        })
+    }
     @action GetTieZiComment = async (condition) => {
         const res = await axios.get('/api/commentList')
         console.log(res)

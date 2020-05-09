@@ -14,13 +14,40 @@ var app = express();
 
 var server = require('http').Server(app);
 
-var io = require('socket.io')(server);
+var io = require('socket.io').listen(server).sockets;
 
 var path = require('path');
 
 var pathLib = require('path');
 
 app.use(express["static"](path.join(__dirname, './static')));
+var connectedUser = [];
+io.on("connection", function (socket) {
+  console.log("a user connected"); //login
+
+  socket.on('login', function (name, callback) {
+    // callback(true);
+    connectedUser.push(name);
+    updateUserName();
+  }); //receive chat message
+
+  socket.on('chat message', function (msg) {
+    console.log(msg); //emit message data
+
+    io.emit("output", msg);
+  }); //disconnect
+
+  socket.on('disconnect', function (user) {
+    console.log('disconneted');
+    connectedUser.splice(connectedUser.indexOf(user), 1);
+    console.log(connectedUser);
+    updateUserName();
+  });
+
+  function updateUserName() {
+    io.emit('loadUser', connectedUser);
+  }
+});
 app.get('/', function (req, res) {
   res.json('ok');
 }); //文件管理-文件上传
@@ -33,12 +60,6 @@ app.post('/api/upload_file', function (req, res) {
     if (err) res.send('上传失败');else res.send('成功');
   }); //1.获取原始文件扩展名
   //2.重命名临时文件
-});
-io.on('connection', function (socket) {
-  socket.on('sendmsg', function (data) {
-    console.log('我发送了数据', data);
-    io.emit('recvmsg', data);
-  });
 }); //引入users.js
 
 var users = require('./routers/api/users');
@@ -111,7 +132,8 @@ mongoose.connect(url, {
 })["catch"](function (err) {
   return console.log(err);
 });
-server.listen(port, function () {
+server.listen(port, '0.0.0.0', function () {
+  //0.0.0.0允许所有端口访问
   console.log("Server running on port ".concat(port));
 }); // const User = mongoose.model('user', new mongoose.Schema({
 //     user: { type: String }

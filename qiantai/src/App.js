@@ -6,6 +6,7 @@ import zhCN from 'antd/es/locale/zh_CN';
 import { routers } from "./router/router";
 import { stores } from 'store/index'
 class App extends Component {
+  
   render() {
     return (
       <Provider {...stores}>

@@ -72,9 +72,9 @@ export default class New extends Component {
                         <div className="Avatar">
                             发帖人：      {this.props.homeStore.User}
                         </div>
-                        <div className="TieZiNum">
+                        {/* <div className="TieZiNum">
                             <span>贴子数：</span>1
-                        </div>
+                        </div> */}
                     </div>
                     <div className="TieZiRight">
                         <div className="TieZiRightContent">

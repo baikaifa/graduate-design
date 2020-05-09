@@ -5,11 +5,46 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = require('socket.io').listen(server).sockets;
+
 const path = require('path')
 const pathLib = require('path');
 
 app.use(express.static(path.join(__dirname, './static')))
+
+
+let connectedUser = [];
+io.on("connection", socket => {
+    console.log("a user connected");
+
+    //login
+    socket.on('login', (name, callback) => {
+            // callback(true);
+            connectedUser.push(name);
+            updateUserName();
+    })
+    //receive chat message
+    socket.on('chat message', msg => {
+        console.log(msg);
+        //emit message data
+        io.emit("output",
+            msg
+        );
+    })
+    //disconnect
+    socket.on('disconnect', (user) => {
+        console.log('disconneted');
+        connectedUser.splice(connectedUser.indexOf(user), 1);
+        console.log(connectedUser);
+        updateUserName();
+    });
+
+    function updateUserName() {
+        io.emit('loadUser', connectedUser);
+    }
+})
+
+
 
 app.get('/', (req, res) => {
     res.json('ok')
@@ -30,12 +65,7 @@ app.post('/api/upload_file', function (req, res) {
     //1.获取原始文件扩展名
     //2.重命名临时文件
 });
-io.on('connection', function (socket) {
-    socket.on('sendmsg', function (data) {
-        console.log('我发送了数据', data);
-        io.emit('recvmsg', data)
-    })
-})
+
 
 //引入users.js
 
@@ -63,7 +93,7 @@ require('./config/passport')(passport);//在这里引入后直接在config下的
 //     res.send("Hello World!");
 // })
 //使用routes
-app.use("/api/commentList",commentList)
+app.use("/api/commentList", commentList)
 app.use("/api/users", users);
 app.use('/api/profiles', profiles);
 app.use('/api/headerList', headerList);
@@ -85,7 +115,7 @@ var url = 'mongodb://localhost:27017/houtai' //local表示数据库的名称
 mongoose.connect(url, { useNewUrlParser: true })
     .then(() => { console.log('连接成功') })
     .catch(err => console.log(err))
-server.listen(port, () => {
+server.listen(port, '0.0.0.0', () => {//0.0.0.0允许所有端口访问
     console.log(`Server running on port ${port}`);
 })
 

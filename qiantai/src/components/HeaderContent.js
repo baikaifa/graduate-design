@@ -29,10 +29,13 @@ export default withRouter(function HeaderContent(props) {
                     homeStore.IsLogin && <Button ghost onClick={() => {
                         localStorage.removeItem('token')
                         props.history.push('/Login')
+
+                        homeStore.socket.close()
+
                     }} style={{ marginLeft: "16px" }} >退出登录</Button>
                 }
             </div>
-        </React.Fragment>
+        </React.Fragment >
     ))
 })
 

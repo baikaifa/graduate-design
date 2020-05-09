@@ -57,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "react-socket-io": "^0.2.5",
     "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }

@@ -1,0 +1,169 @@
+.AikeVideo {
+  min-width: 100%;
+  width: 100%;
+  z-index: -9999;
+  position: absolute;
+  filter: opacity(0.5);
+}
+.title {
+  text-align: center;
+}
+.title .copyLianJie {
+  color: #999;
+  cursor: pointer;
+}
+.title .content {
+  font-size: 30px;
+}
+.TieZiWrap {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  position: relative;
+}
+.TieZiWrap .TieZiLeft {
+  width: 30%;
+}
+.TieZiWrap .TieZiLeft .Avatar {
+  color: red;
+}
+.TieZiWrap .TieZiRight {
+  width: 70%;
+}
+.TieZiWrap .TieZiRight .TieZiRightContent {
+  width: 640px;
+}
+.comment {
+  margin-top: 16px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+.comment .commentLeft {
+  width: 30%;
+}
+.comment .commentRight {
+  width: 70%;
+}
+.comment .commentRight .commentInput {
+  width: 500px;
+}
+.ant-carousel .slick-slide {
+  text-align: center;
+  filter: opacity(0.7);
+  overflow: hidden;
+}
+.ant-carousel .slick-slide img {
+  cursor: pointer;
+}
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+.userEmail {
+  display: inline-block;
+  width: auto;
+  height: 40px;
+  line-height: 40px;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+}
+.logo {
+  background-image: url(../img/logo.png);
+}
+.header {
+  width: 100%;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.92);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.header .logo_img {
+  cursor: pointer;
+}
+.header .login {
+  cursor: pointer;
+}
+.all {
+  width: 100%;
+  height: 500px;
+  background: gray;
+  padding-top: 20px;
+}
+.all .userEmail {
+  display: inline-block;
+}
+.all .tong_ji__xin_xi {
+  margin-left: 20px;
+  display: inline-block;
+}
+.all .fen_jie_xian {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px dashed #fff;
+  padding: 10px;
+}
+.left {
+  width: 50%;
+  height: calc(100% - 90px);
+  position: relative;
+}
+.left .car {
+  margin-top: 32px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.left .chat {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right {
+  width: 50%;
+  height: calc(100% - 90px);
+  float: left;
+  position: relative;
+}
+.right .ZiXun {
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.right .ZiXun .head {
+  width: 100%;
+  text-align: center;
+  color: red;
+  font-size: 26px;
+}
+.right .ZiXun li {
+  cursor: pointer;
+}
+.right .ZiXun li span:nth-child(2) {
+  float: right;
+}
+.right .cz {
+  margin-left: 200px;
+}
+.FooterWrap {
+  height: 95px;
+}
+.FooterWrap footer {
+  border-top: 5px solid blue;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  background-color: #fff;
+}

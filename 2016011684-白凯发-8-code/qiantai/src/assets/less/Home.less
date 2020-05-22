@@ -1,0 +1,212 @@
+@s: 16px;
+
+.AikeVideo {
+    min-width: 100%;
+    width    : 100%;
+    z-index  : -9999;
+    position : absolute;
+    filter   : opacity(0.5);
+    // height: 400px;
+    // filter: grayscale(100%);
+}
+
+.title {
+    text-align: center;
+
+    .copyLianJie {
+        color : #999;
+        cursor: pointer;
+
+    }
+
+    .content {
+        font-size: 30px;
+    }
+
+}
+
+.TieZiWrap {
+    width       : 80%;
+    margin-left : auto;
+    margin-right: auto;
+    display     : flex;
+    position    : relative;
+
+    .TieZiLeft {
+        width: 30%;
+
+        .Avatar {
+            color: red;
+        }
+    }
+
+    .TieZiRight {
+        width: 70%;
+
+        .TieZiRightContent {
+            width: 640px;
+        }
+    }
+
+}
+
+.comment {
+    margin-top: @s;
+    width       : 80%;
+    margin-left : auto;
+    margin-right: auto;
+    display     : flex;
+    .commentLeft {
+        width: 30%;
+    }
+
+    .commentRight {
+        width: 70%;
+        .commentInput{
+            width: 500px;
+        }
+    }
+}
+
+
+.ant-carousel .slick-slide {
+    text-align: center;
+    filter    : opacity(0.7);
+    overflow  : hidden;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.ant-carousel .slick-slide h3 {
+    color: #fff;
+}
+
+.userEmail {
+    display       : inline-block;
+    width         : auto;
+    height        : 40px;
+    line-height   : 40px;
+    color         : white;
+    border        : 1px solid white;
+    cursor        : pointer;
+    vertical-align: middle;
+    text-align    : center;
+}
+
+.logo {
+    background-image: url(../img/logo.png);
+}
+
+.header {
+    width     : 100%;
+    height    : 90px;
+    background: rgba(0, 0, 0, .92);
+    position  : sticky;
+    top       : 0;
+    z-index   : 2;
+
+    .logo_img {
+        cursor: pointer;
+    }
+
+    .login {
+        cursor: pointer;
+    }
+
+}
+
+.all {
+    width      : 100%;
+    height     : 500px;
+    background : gray;
+    padding-top: 20px;
+
+    .userEmail {
+        display: inline-block;
+    }
+
+    .tong_ji__xin_xi {
+        margin-left: 20px;
+        display    : inline-block;
+    }
+
+    .fen_jie_xian {
+        width        : 95%;
+        margin-left  : auto;
+        margin-right : auto;
+        border-bottom: 1px dashed #fff;
+        padding      : 10px;
+    }
+}
+
+.left {
+    width   : 50%;
+    height  : calc(100% - 90px);
+    position: relative;
+
+    .car {
+   
+        margin-top: 2*@s;
+        width: 300px;
+        margin-left: auto; margin-right: auto;
+    }
+    .chat{
+        margin-top: 2*@s;
+        display: flex;
+        justify-content: center;
+         align-items: center;
+    }
+
+    // float: left;
+}
+
+.right {
+    width   : 50%;
+    height  : calc(100% - 90px);
+    float   : left;
+    position: relative;
+
+    .ZiXun {
+        margin-top     : 16px;
+        margin-left: auto; margin-right: auto;
+        width          : 640px;
+        height         : 400px;
+        display        : flex;
+        flex-direction : column;
+        justify-content: space-evenly;
+
+        .head {
+            width     : 100%;
+            text-align: center;
+            color     : red;
+            font-size : 26px;
+        }
+
+        li {
+            cursor: pointer;
+
+            span:nth-child(2) {
+                float: right;
+            }
+        }
+
+    }
+    .cz{
+        margin-left: 200px;
+    }
+}
+
+.FooterWrap {
+    height: 95px;
+
+    footer {
+
+        border-top      : 5px solid blue;
+        width           : 100%;
+        position        : fixed;
+        bottom          : 0px;
+        background-color: #fff;
+    }
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="theme-color" content="#000000" />
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>游戏玩家在线交流平台</title>
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <script>
+    // (function () {
+    //   //get element
+    //   const loginForm = document.getElementById('login-form');
+    //   const messageForm = document.getElementById('message-form');
+    //   const messages = document.getElementById('messages');
+    //   const userList = document.getElementById('user-list');
+    //   const loginCol = document.getElementById('login-col');
+    //   const chatCol = document.getElementById('chat-col');
+
+    //   // connect to socket.io
+    //   var socket = io({ 'timeout': 5000, 'connect timeout': 5000 });
+    //   //check for connections
+
+    //   if (socket !== undefined) {
+    //     console.log('connected to socket');
+    //   }
+    //   // Update user list
+    //   socket.on("loadUser", users => {
+    //     userList.innerHTML = ""
+    //     users.forEach(user => {
+    //       var userLi = document.createElement("li")
+    //       userLi.setAttribute("class", "collection-item")
+    //       userLi.innerHTML = `<h6 class="center">${user}</h6>`
+    //       userList.insertBefore(userLi, userList.lastChild)
+    //     })
+    //   })
+    //   // submit login form
+    //   loginForm.addEventListener('submit', e => {
+    //     e.preventDefault();
+    //     const userName = document.getElementById('name').value;
+    //     //emit login
+    //     socket.emit('login', userName, () => {
+    //       loginCol.style = "display:none";
+    //       chatCol.style = "display: block";
+
+    //       //add welcome message
+    //       let message = document.createElement('p');
+    //       message.setAttribute('class', 'center blue-grey-text text-lighten-2');
+    //       message.textContent = `Welcome ${userName} joined Chat!`;
+    //       messages.appendChild(message)
+    //       messages.insertBefore(message, messages.lastElementChild)
+    //     })
+    //   })
+    //   // Submit Message
+    //   messageForm.addEventListener("submit", e => {
+    //     e.preventDefault()
+    //     const msg = document.querySelector("textarea").value
+    //     document.querySelector("textarea").value = ""
+    //     socket.emit("chat message", msg)
+    //   })
+
+    //   // Add message to card
+    //   socket.on("output", data => {
+    //     let message = document.createElement("h6")
+    //     message.textContent = data.name + ": " + data.msg
+    //     messages.appendChild(message)
+    //     messages.insertBefore(message, messages.lastChild)
+    //   })
+    // })();
+  </script>
+</body>
+
+</html>
